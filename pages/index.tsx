@@ -7,12 +7,12 @@ export default function Home() {
   const [showUmmyName, setShowUmmyName] = useState(false);
 
   const ummyfy = () => {
-    const vowels = ['a', 'e', 'i', 'o', 'u'];
+    const vowelsAndSome = ['a', 'e', 'i', 'o', 'u', 'y'];
 
     // Get the first vowel
     let firstVowelIndex = 0;
     for (let i = 0; i < name.length; i++) {
-      if (vowels.includes(name[i].toLowerCase())) {
+      if (vowelsAndSome.includes(name[i].toLowerCase())) {
         firstVowelIndex = i;
         break;
       }
