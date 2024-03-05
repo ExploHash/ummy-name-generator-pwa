@@ -8,18 +8,24 @@ export default function Home() {
 
   const ummyfy = () => {
     const vowelsAndSome = ['a', 'e', 'i', 'o', 'u', 'y'];
+    let newName;
 
-    // Get the first vowel
-    let firstVowelIndex = 0;
-    for (let i = 0; i < name.length; i++) {
-      if (vowelsAndSome.includes(name[i].toLowerCase())) {
-        firstVowelIndex = i;
-        break;
+    if (name.endsWith('mmy')) {
+      newName = "Ummy";
+    } else {
+      // Get the first vowel
+      let firstVowelIndex = 0;
+      for (let i = 0; i < name.length; i++) {
+        if (vowelsAndSome.includes(name[i].toLowerCase())) {
+          firstVowelIndex = i;
+          break;
+        }
       }
+      
+      newName = name.slice(0, firstVowelIndex + 1) + 'mmy';
     }
 
     // Cut off the name after the first vowel and add 'mmy'
-    const newName = name.slice(0, firstVowelIndex + 1) + 'mmy';
 
     // Capitalize the first letter
     const capitalizedNewName =
