@@ -7,34 +7,43 @@ export default function Home() {
   const [showUmmyName, setShowUmmyName] = useState(false);
 
   const ummyfy = () => {
-    const vowelsAndSome = ['a', 'e', 'i', 'o', 'u', 'y'];
     let newName;
 
-    if (name.endsWith('mmy')) {
-      newName = "Ummy";
+    if (name.includes(' ')) {
+      // Split the name into words
+      const words = name.split(' ');
+      newName = words.map((word) => ummyfyWord(word)).join(' ');
+    } else {
+      newName = ummyfyWord(name);
+    }
+
+    // Set ummyName and show it
+    setUmmyName(newName);
+    setShowUmmyName(true);
+  };
+
+  const ummyfyWord = (word: string) =>
+    {
+    const vowelsAndSome = ['a', 'e', 'i', 'o', 'u', 'y'];
+    let output = '';
+    if (word.endsWith('mmy')) {
+      output = "Ummy";
     } else {
       // Get the first vowel
       let firstVowelIndex = 0;
-      for (let i = 0; i < name.length; i++) {
-        if (vowelsAndSome.includes(name[i].toLowerCase())) {
+      for (let i = 0; i < word.length; i++) {
+        if (vowelsAndSome.includes(word[i].toLowerCase())) {
           firstVowelIndex = i;
           break;
         }
       }
       
-      newName = name.slice(0, firstVowelIndex + 1) + 'mmy';
+      output = word.slice(0, firstVowelIndex + 1) + 'mmy';
     }
 
-    // Cut off the name after the first vowel and add 'mmy'
-
     // Capitalize the first letter
-    const capitalizedNewName =
-      newName.charAt(0).toUpperCase() + newName.slice(1);
-
-    // Set ummyName and show it
-    setUmmyName(capitalizedNewName);
-    setShowUmmyName(true);
-  };
+    return output.charAt(0).toUpperCase() + output.slice(1);
+  }
 
   // Use useEffect to reset ummyName when the name input changes
   useEffect(() => {
